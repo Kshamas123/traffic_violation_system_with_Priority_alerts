@@ -1,20 +1,22 @@
-const express = require('express');//importing express modulo
-const bodyParser = require('body-parser'); //importing body parder to access data from json request body
-const trafficViolationRoutes = require('./Routes/trafficviolationroutes');  
-const app = express(); //initializing express application
-// const cors = require('cors');
-// app.use(cors());
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
 
-app.use(bodyParser.json());
-// /api is prefix to routing
+// Import routes
+const trafficViolationRoutes = require('./Routes/trafficviolationroutes');
+
+// Middleware
+app.use(bodyParser.json()); // For parsing application/json
+
+// Use the routes
 app.use('/api', trafficViolationRoutes);
 
-const PORT = process.env.PORT || 5000;
-
 // Start the server
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
+
 
 
 
